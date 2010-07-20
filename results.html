@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="content-type">
+		<title>CSS Print test</title>
+		<link href=' http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+		<style type="text/css" media="all">
+			/*
+			Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+			Code licensed under the BSD License:
+			http://developer.yahoo.com/yui/license.html
+			version: 3.1.1
+			build: 47 - modified
+			*/
+			html{color:#000;background:#FFF;}
+			body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+			table{border-collapse:collapse;border-spacing:0;}
+			fieldset,img{border:0;}
+			address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal;}
+			li{list-style:none;}
+			caption,th{text-align:left;}
+			h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+			q:before,q:after{content:'';}
+			input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+			input,textarea,select{*font-size:100%;}legend{color:#000;}
+			/* End of YUI reset */
+			
+			body{width:960px;margin:20px auto;font:14px/20px "Droid Sans", Arial, Helvetica, sans-serif;color:#222;}
+			a{color:#222;}
+			h1{margin:50px 0;font-size:20px;}
+			h2{margin:50px 0 20px;font-size:16px;}
+			h3{margin-bottom:5px;font-size:15px;font-weight:bold;}
+			td,th{padding:10px;text-align:center;border:1px solid #aaa;}
+			thead th,
+			tfoot th{background:#eee;}
+			tbody th{text-align:right;white-space:nowrap;background:#eee;}
+			tbody td.y{color:#fff;background:#008000;}
+			tbody td.n{color:#fff;background:#d80e0e;}
+			li{list-style:inside disc;}
+			.test{margin-bottom:20px;padding:10px;background:#eee;}
+			.test h3 a{font-size:12px;font-weight:normal;}
+			.test pre{margin:5px 0;padding:5px;font:14px/20px "Droid Sans Mono", monospace;background:#fff;}
+			.test .description{margin:5px 0 10px;}
+			.test .tests-list li{list-style:none;}
+			.test .tests-list a{font-size:12px;}
+		</style>
+	</head>
+	<body>
+		<h1>Test of CSS Print support in browsers</h1>
+		<h2>Briefly</h2>
+		<table cellpadding="0">
+			<thead>
+				<th scope="col">Tests</th>
+				<th scope="col">IE6</th>
+				<th scope="col">IE7</th>
+				<th scope="col">IE8</th>
+				<th scope="col">IE9pr3</th>
+				<th scope="col">Fx 3.0</th>
+				<th scope="col">Fx 3.5</th>
+				<th scope="col">Fx 3.6</th>
+				<th scope="col">Opera 10.60</th>
+				<th scope="col">Chrome 5</th>
+				<th scope="col">Safari 5</th>
+			</thead>
+			<tfoot>
+				<th scope="col">Tests</th>
+				<th scope="col">IE6</th>
+				<th scope="col">IE7</th>
+				<th scope="col">IE8</th>
+				<th scope="col">IE9pr3</th>
+				<th scope="col">Fx 3.0</th>
+				<th scope="col">Fx 3.5</th>
+				<th scope="col">Fx 3.6</th>
+				<th scope="col">Opera 10.60</th>
+				<th scope="col">Chrome 5</th>
+				<th scope="col">Safari 5</th>
+			</tfoot>
+			<tbody>
+				<tr>
+					<th scope="row"><a href="#test-at-page-rule">@page rule</a></th>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="n">No</td>
+					<td class="n">No</td>
+					<td class="n">No</td>
+					<td class="y">Yes</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+				</tr>
+				<tr>
+					<th scope="row"><a href="#test-page-breaks">Page breaks</a></th>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+				</tr>
+				<tr>
+					<th scope="row"><a href="#test-media-queries">Media Queries</a></th>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+					<td class="u">Untested</td>
+				</tr>
+			</tbody>
+		</table>
+		<h2>Test suite details</h2>
+		
+		<div class="test">
+			<h3 id="test-at-page-rule">@page rule</h3>
+			<p class="description">Testing the CSS2.1 @page rule with pseudo-selectors.<br /> The only allowed CSS property in this context is <code>margin</code> and its suffixes.</p>
+			<ul class="tests-list">
+				<li>
+					<strong>Test 1</strong> <a href="tests/css21-page/css21-page-1.html">(show test)</a>
+					<pre>@page{margin:6cm;}</pre>
+				</li>
+				<li>
+					<strong>Test 2</strong> <a href="tests/css21-page/css21-page-2.html">(show test)</a>
+					<pre>@page{margin-top:6cm;}</pre>
+				</li>
+				<li>
+					<strong>Test 3</strong> <a href="tests/css21-page/css21-page-3.html">(show test)</a>
+					<pre>@page{margin-bottom:6cm;}</pre>
+				</li>
+				<li>
+					<strong>Test 4</strong> <a href="tests/css21-page/css21-page-4.html">(show test)</a>
+					<pre>@page{margin-left:6cm;}</pre>
+				</li>
+				<li>
+					<strong>Test 5</strong> <a href="tests/css21-page/css21-page-5.html">(show test)</a>
+					<pre>@page{margin-right:6cm;}</pre>
+				</li>
+				<li>
+					<strong>Test 6</strong> <a href="tests/css21-page/css21-page-6.html">(show test)</a>
+					<pre>@page:left{margin:6cm;}</pre>
+				</li>
+				<li>
+					<strong>Test 7</strong> <a href="tests/css21-page/css21-page-7.html">(show test)</a>
+					<pre>@page:right{margin:6cm;}</pre>
+				</li>
+				<li>
+					<strong>Test 8</strong> <a href="tests/css21-page/css21-page-8.html">(show test)</a>
+					<pre>@page:first{margin:6cm;}</pre>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="test">
+			<h3 id="test-page-breaks">Page breaks</h3>
+			<p class="description">Testing the CSS2.1 Page breaks.</p>
+		</div>
+		
+		<div class="test">
+			<h3 id="test-media-queries">Media Queries</h3>
+			<p class="description">Testing the CSS3 Media Queries, print related only.<br /> Including <code>width</code>, <code>height</code>, <code>device-width</code> and <code>device-height</code>.</p>
+		</div>
+		
+		<h2>Related W3C documents</h2>
+		<ul>
+			<li>CSS level 2.1 Paged Media: <a href="http://www.w3.org/TR/CSS21/page.html">http://www.w3.org/TR/CSS21/page.html</a></li>
+			<li>CSS3 Media Queries: <a href="http://www.w3.org/TR/css3-mediaqueries/">http://www.w3.org/TR/css3-mediaqueries/</a></li>
+			<li>CSS3 Paged Media Module: <a href="http://www.w3.org/TR/css3-page/">http://www.w3.org/TR/css3-page/</a></li>
+			<li>CSS3 Generated Content for Paged Media Module: <a href="http://www.w3.org/TR/css3-gcpm/">http://www.w3.org/TR/css3-gcpm/</a></li>
+		</ul>
+		<script type="text/javascript">
+			(function(){
+				var titles = document.querySelectorAll(".test h3");
+				for (var i = 0; i < titles.length; ++i) {
+					
+					if (!titles[i].parentNode.querySelector(".tests-list")) continue;
+					
+					var toggleLink = document.createElement("a"),
+						toggleState = false;
+					
+					toggleLink.setAttribute("href", "");
+					toggleLink.textContent = "(show details)";
+					titles[i].textContent = titles[i].textContent+" ";
+					titles[i].appendChild(toggleLink);
+					
+					function toggle(e) {
+						if (!!e) e.preventDefault();
+						this.parentNode.parentNode.querySelector(".tests-list").style.display = (toggleState)? "block":"none";
+						toggleState = (toggleState === true)? false : true;
+					};
+					
+					toggleLink.addEventListener("click", toggle, false);
+					toggle.apply(toggleLink);
+				}
+				
+			})();
+		</script>
+	</body>
+</html>
