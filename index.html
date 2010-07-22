@@ -87,14 +87,14 @@
 					<th scope="row"><a href="#test-at-page-rule">@page rule</a></th>
 					<td class="u">Untested</td>
 					<td class="u">Untested</td>
-					<td class="u">Untested</td>
+					<td class="y">Yes</td>
 					<td class="u">Untested</td>
 					<td class="n">No</td>
 					<td class="n">No</td>
 					<td class="n">No</td>
 					<td class="y">Yes</td>
-					<td class="u">Untested</td>
-					<td class="u">Untested</td>
+					<td class="n">No</td>
+					<td class="n">No</td>
 				</tr>
 				<tr>
 					<th scope="row"><a href="#test-page-breaks">Page breaks</a></th>
@@ -192,6 +192,8 @@
 		
 		<script type="text/javascript">
 			(function(){
+				if (!document.querySelectorAll) return;
+				
 				var titles = document.querySelectorAll(".test h3");
 				for (var i = 0; i < titles.length; ++i) {
 					
@@ -201,19 +203,34 @@
 						toggleState = false;
 					
 					toggleLink.setAttribute("href", "");
-					toggleLink.textContent = "(show details)";
-					titles[i].textContent = titles[i].textContent+" ";
+					toggleLink.innerHTML = "(show details)";
+					titles[i].innerHTML = titles[i].innerHTML + " ";
 					titles[i].appendChild(toggleLink);
 					
+					//titles[i].innerHTML = titles[i].innerHTML + " Test";
+					
 					function toggle(e) {
-						if (!!e) e.preventDefault();
-						this.parentNode.parentNode.querySelector(".tests-list").style.display = (toggleState)? "block":"none";
+						if (e && e.preventDefault) e.preventDefault();
+						getClosest(toggleLink, "div").querySelector(".tests-list").style.display = (toggleState)? "block":"none";
 						toggleState = (toggleState === true)? false : true;
+						return false;
 					};
 					
-					toggleLink.addEventListener("click", toggle, false);
+					if (toggleLink.addEventListener) {
+						toggleLink.addEventListener("click", toggle, false);
+					} else {
+						toggleLink.attachEvent("onclick", toggle);
+					}
+					
 					toggle.apply(toggleLink);
 				}
+				
+				function getClosest(elt, parentName){
+					while(elt.tagName.toLowerCase() !== parentName.toLowerCase()){
+						elt = elt.parentNode;
+					}
+					return elt;
+				};
 				
 			})();
 		</script>
